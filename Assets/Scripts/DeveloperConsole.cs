@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class DevelopperConsole : MonoBehaviour
+public class DeveloperConsole : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI consoleText;
     [SerializeField] private TMP_InputField inputField;
