@@ -21,7 +21,7 @@ A modular developer console for Unity, allowing you to execute custom commands d
    git clone https://github.com/oneblack74/UnityDeveloperConsole.git
    ```
 
-2. Clone the project in Unity
+2. Open the project in Unity
 
 ### Usage
 
