@@ -30,4 +30,6 @@ A modular developer console for Unity, allowing you to execute custom commands d
 - Create a canvas with an InputField and a TextMeshProUGUI as a child.
 - Put the DeveloperConsole and CommandExecutor scripts on it. The CommandExecutor script will contain a list of ScriptableObjects representing the commands. On the DeveloperConsole script put the references of the two children of the gameObject and the CommandExecutor script.
 
+
+## Status
 (Project under development)
