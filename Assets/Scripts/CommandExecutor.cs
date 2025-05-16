@@ -5,13 +5,18 @@ public class CommandExecutor : MonoBehaviour
 {
     [SerializeField] private ConsoleCommand[] commands;
 
-    private Dictionary<string[], ConsoleCommand> commandDictionary;
+    private Dictionary<string, ConsoleCommand> commandDictionary;
 
     private void Awake()
     {
-        commandDictionary = new Dictionary<string[], ConsoleCommand>();
+        commandDictionary = new Dictionary<string, ConsoleCommand>();
         foreach (var command in commands)
         {
+            if (commandDictionary.ContainsKey(command.commandName))
+            {
+                Debug.LogError("Command " + command.commandName + " already exists in the dictionary.");
+                continue;
+            }
             commandDictionary.Add(command.commandName, command);
         }
     }
@@ -19,13 +24,24 @@ public class CommandExecutor : MonoBehaviour
     public string ExcecuteCommand(string input)
     {
         string[] inputSplit = input.Split(' ');
-        foreach (var item in inputSplit)
+
+        // split le nom de la commande
+        string commandName = inputSplit[0];
+
+        // split les options de la commande
+        string[] args = new string[inputSplit.Length - 1];
+        for (int i = 1; i < inputSplit.Length; i++)
         {
-            Debug.Log("Item: <" + item + ">");
+            args[i - 1] = inputSplit[i];
         }
-        if (commandDictionary.ContainsKey(inputSplit))
+
+        Debug.Log("Command name: " + commandName);
+        Debug.Log("Command args: " + string.Join(", ", args));
+
+        if (commandDictionary.ContainsKey(commandName))
         {
-            string rep = commandDictionary[inputSplit].Excecute(inputSplit);
+            string rep = commandDictionary[commandName].Excecute(args);
+
             return "Command executed: " + rep + "\n";
         }
         else
